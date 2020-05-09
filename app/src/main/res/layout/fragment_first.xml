@@ -24,12 +24,27 @@
 
     <Button
         android:id="@+id/button_first"
-        android:layout_width="413dp"
+        android:layout_width="410dp"
         android:layout_height="175dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:background="#49627A"
         android:fontFamily="@font/aguafina_script"
         android:text="@string/next"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="410dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/create_button"
+        android:fontFamily="@font/aguafina_script"
+        android:text="@string/Create"
         android:textColor="@android:color/white"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,32 +53,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_first" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="413dp"
+        android:id="@+id/button2"
+        android:layout_width="410dp"
         android:layout_height="175dp"
-        android:layout_marginTop="20dp"
-        android:background="#49627A"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/load_button"
         android:fontFamily="@font/aguafina_script"
-        android:text="@string/Create"
+        android:text="@string/Load"
         android:textColor="@android:color/white"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_first" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="413dp"
-        android:layout_height="175dp"
-        android:background="#49627A"
-        android:fontFamily="@font/aguafina_script"
-        android:text="@string/Load"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

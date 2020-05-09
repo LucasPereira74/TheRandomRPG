@@ -4,11 +4,31 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">N e x t</string>
-    <string name="previous">Previous</string>
-
+    <string name="third_fragment_label">Third Fragment</string>
+    <string name="next">Q u i t</string>
+    <string name="previous">P r e v i o u s</string>
+    <string name="Race_choice">Choose your race</string>
+    <string name="Classe_choice">Choose your class</string>
+    <string name="Weapon_choice">Choose your weapon</string>
+    <string name="Armor_choice">Choose your armor</string>
     <string name="hello_first_fragment">The Random RPG</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="Create">C R E A T E</string>
     <string name="Load">L O A D</string>
+    <string name="ButtonHuman">Human</string>
+    <string name="ButtonOrc">Orc</string>
+    <string name="ButtonElv">Elv</string>
+    <string name="ButtonWarrior">Warrior</string>
+    <string name="ButtonMagician">Magician</string>
+    <string name="ButtonAssassin">Assassin</string>
+    <string name="CreateFrag2" >C r e a t e</string>
+    <string name="ATT" >A T T</string>
+    <string name="DEF" >D E F</string>
+    <string name="AGI" >A G I</string>
+    <string name="MAG" >M A G</string>
+    <string name="ATT_Value" >1</string>
+    <string name="DEF_Value" >1</string>
+    <string name="AGI_Value" >1</string>
+    <string name="MAG_Value" >1</string>
+
 </resources>
