@@ -5,22 +5,45 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import interfaces.PassDataInterface;
 
 public class MainActivity extends AppCompatActivity {
+
+    public void setRace(int race) {
+        Race = race;
+    }
+
+    public void setClass(int aClass) {
+        Class = aClass;
+    }
+
+    int Race = 1;
+    int Class = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -43,4 +66,16 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public int getMyDataRace(){
+        return Race;
+    }
+
+    public int getMyDataClass(){
+        return Class;
+    }
+
+
+
 }
+

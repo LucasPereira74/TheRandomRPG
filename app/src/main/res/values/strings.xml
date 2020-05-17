@@ -6,6 +6,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="third_fragment_label">Third Fragment</string>
     <string name="next">Q u i t</string>
+    <string name="create2">C r e a t e</string>
     <string name="previous">P r e v i o u s</string>
     <string name="Race_choice">Choose your race</string>
     <string name="Classe_choice">Choose your class</string>
@@ -30,5 +31,22 @@
     <string name="DEF_Value" >1</string>
     <string name="AGI_Value" >1</string>
     <string name="MAG_Value" >1</string>
+
+    /*for the Armor recycler view*/
+
+    <string name="ButtonArmor"></string>
+
+    <string name="Armor_Name" >Name of the armor</string>
+
+    <string name="ATT_Armor_Value" >1</string>
+    <string name="DEF_Armor_Value" >1</string>
+    <string name="AGI_Armor_Value" >1</string>
+    <string name="MAG_Armor_Value" >1</string>
+
+    <string name="ATT_Armor" >ATT</string>
+    <string name="DEF_Armor" >DEF</string>
+    <string name="AGI_Armor" >AGI</string>
+    <string name="MAG_Armor" >MAG</string>
+
 
 </resources>
