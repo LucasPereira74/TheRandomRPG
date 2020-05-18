@@ -11,6 +11,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 public class FirstFragment extends Fragment {
 
+    int Race = 1;
+    int Class = 1;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -22,6 +24,10 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if(this.getArguments() != null){
+            Race = this.getArguments().getInt("race");
+            Class = this.getArguments().getInt("class");
+        }
 
         view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +39,10 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_ThirdFragment);
+                Bundle bundle = new Bundle();
+                bundle.putInt("race1", Race);
+                bundle.putInt("class1", Class);
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_ThirdFragment, bundle);
             }
         });
     }

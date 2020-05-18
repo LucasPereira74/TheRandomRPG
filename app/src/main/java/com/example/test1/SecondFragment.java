@@ -48,10 +48,10 @@ public class SecondFragment extends Fragment {
         view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity mainActivity = new MainActivity();
-                mainActivity.setClass(Class);
-                mainActivity.setRace(Race);
-                NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+                Bundle bundle = new Bundle();
+                bundle.putInt("race", Race);
+                bundle.putInt("class", Class);
+                NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_SecondFragment_to_FirstFragment, bundle);
             }
         });
 

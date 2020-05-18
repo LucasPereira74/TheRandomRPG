@@ -11,7 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> values;
+    private List<Armor> values;
+    private TextView AttText;
+    private TextView DefText;
+    private TextView AgiText;
+    private TextView MagText;
+
+    private int ATT_Charac;
+    private int DEF_Charac;
+    private int AGI_Charac;
+    private int MAG_Charac;
+
+    private int ATT_Armor;
+    private int DEF_Armor;
+    private int AGI_Armor;
+    private int MAG_Armor;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -30,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public void add(int position, String item) {
+    public void add(int position, Armor item) {
         values.add(position, item);
         notifyItemInserted(position);
     }
@@ -41,8 +55,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<String> myDataset) {
+    public MyAdapter(List<Armor> myDataset, TextView textview, TextView textview2, TextView textview3, TextView textview4) {
         values = myDataset;
+        AttText = textview;
+        DefText = textview3;
+        AgiText = textview3;
+        MagText = textview4;
     }
 
     // Create new views (invoked by the layout manager)
@@ -57,17 +75,41 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final String name = values.get(position);
-        holder.txtHeader.setText(name);
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
+        final Armor currentArmor = values.get(position);
+        holder.txtHeader.setText(currentArmor.getName());
+        holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(position);
+                ATT_Charac = Integer.valueOf(AttText.getText().toString());
+                DEF_Charac = Integer.valueOf(DefText.getText().toString());
+                AGI_Charac = Integer.valueOf(AgiText.getText().toString());
+                MAG_Charac = Integer.valueOf(MagText.getText().toString());
+
+                ATT_Armor = currentArmor.getATT();
+                DEF_Armor = currentArmor.getDEF();
+                AGI_Armor = currentArmor.getAGI();
+                MAG_Armor = currentArmor.getMAG();
+
+                ATT_Charac = ATT_Charac + ATT_Armor;
+                DEF_Charac = DEF_Charac + DEF_Armor;
+                AGI_Charac = AGI_Charac + AGI_Armor;
+                MAG_Charac = MAG_Charac + MAG_Armor;
+
+                String att = String.valueOf(ATT_Charac);
+                String def = String.valueOf(DEF_Charac);
+                String agi = String.valueOf(AGI_Charac);
+                String mag = String.valueOf(MAG_Charac);
+                AttText.setText(att);
+                DefText.setText(def);
+                AgiText.setText(agi);
+                MagText.setText(mag);
             }
         });
 
-        holder.txtFooter.setText("Footer: " + name);
+        holder.txtFooter.setText(currentArmor.getLvl());
     }
+
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override

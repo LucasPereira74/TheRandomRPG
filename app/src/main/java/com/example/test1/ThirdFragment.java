@@ -8,6 +8,7 @@ import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,8 +16,18 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import interfaces.API_interface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThirdFragment extends Fragment {
 
@@ -32,40 +43,30 @@ public class ThirdFragment extends Fragment {
     int AGI = 1;
     int MAG = 1;
 
+    int SwordOn = 0;
+    int StickOn = 0;
+    int DaggerOn = 0;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MainActivity mActivity = new MainActivity();
-
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_third, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_armor);
 
-        recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }
-        // define an adapter
-        mAdapter = new MyAdapter(input);
-        recyclerView.setAdapter(mAdapter);
+        MakeAPICall();
+
         return rootView;
 
     }
 
 
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
-    {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity mainActivity = new MainActivity();
-        mClass = mainActivity.getMyDataClass();
-        mRace = mainActivity.getMyDataRace();
+        mClass = this.getArguments().getInt("class1");
+        mRace = this.getArguments().getInt("race1");
 
         view.findViewById(R.id.button_second3).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,30 +77,30 @@ public class ThirdFragment extends Fragment {
         });
 
         // Set the parameters of the character
-            //Declaration of the component as TextView
+        //Declaration of the component as TextView
         TextView TxtATT = (TextView) getView().findViewById(R.id.att_value);
         TextView TxtDEF = (TextView) getView().findViewById(R.id.def_value);
         TextView TxtAGI = (TextView) getView().findViewById(R.id.agi_value);
         TextView TxtMAG = (TextView) getView().findViewById(R.id.mag_value);
         ImageView BackGroundImageView = (ImageView) getView().findViewById(R.id.Imageview_personnage);
 
-            //Change parameter in function of the race and class
-        if(mRace == 1){ //Race Human
-            if(mClass == 1){ //Class Human_warrior
+        //Change parameter in function of the race and class
+        if (mRace == 1) { //Race Human
+            if (mClass == 1) { //Class Human_warrior
                 ATT = ATT + 1 + 1;
                 DEF = DEF + 1 + 1;
                 AGI = AGI + 1;
                 MAG = MAG + 1;
                 BackGroundImageView.setBackgroundResource(R.drawable.human_warrior);
             }
-            if(mClass == 2){ //Class Human_magician
+            if (mClass == 2) { //Class Human_magician
                 ATT = ATT + 1;
                 DEF = DEF + 1 - 1;
                 AGI = AGI + 1;
                 MAG = MAG + 1 + 3;
                 BackGroundImageView.setBackgroundResource(R.drawable.human_magician);
             }
-            if(mClass == 3){ //Class Human_assassin
+            if (mClass == 3) { //Class Human_assassin
                 ATT = ATT + 1;
                 DEF = DEF + 1;
                 AGI = AGI + 1 + 2;
@@ -107,22 +108,22 @@ public class ThirdFragment extends Fragment {
                 BackGroundImageView.setBackgroundResource(R.drawable.human_assassin);
             }
         }
-        if(mRace == 2){ //Race Orc
-            if(mClass == 1){ //Class Orc_warrior
+        if (mRace == 2) { //Race Orc
+            if (mClass == 1) { //Class Orc_warrior
                 ATT = ATT + 2 + 1;
                 DEF = DEF + 2 + 1;
-                AGI = AGI ;
-                MAG = MAG ;
+                AGI = AGI;
+                MAG = MAG;
                 BackGroundImageView.setBackgroundResource(R.drawable.orc_warrior);
             }
-            if(mClass == 2){ //Class Orc_magician
+            if (mClass == 2) { //Class Orc_magician
                 ATT = ATT + 2;
                 DEF = DEF + 2 - 1;
                 AGI = AGI;
                 MAG = MAG + 3;
                 BackGroundImageView.setBackgroundResource(R.drawable.orc_magician);
             }
-            if(mClass == 3){ //Class Orc_assassin
+            if (mClass == 3) { //Class Orc_assassin
                 ATT = ATT + 2;
                 DEF = DEF + 2;
                 AGI = AGI + 2;
@@ -130,22 +131,22 @@ public class ThirdFragment extends Fragment {
                 BackGroundImageView.setBackgroundResource(R.drawable.orc_assassin);
             }
         }
-        if(mRace == 3){ //Race Elv
-            if(mClass == 1){ //Class Elv_warrior
+        if (mRace == 3) { //Race Elv
+            if (mClass == 1) { //Class Elv_warrior
                 ATT = ATT + 1;
                 DEF = DEF + 1;
                 AGI = AGI + 2;
                 MAG = MAG + 2;
                 BackGroundImageView.setBackgroundResource(R.drawable.elv_warrior);
             }
-            if(mClass == 2){ //Class Elv_magician
+            if (mClass == 2) { //Class Elv_magician
                 ATT = ATT;
                 DEF = DEF - 1;
                 AGI = AGI + 2;
                 MAG = MAG + 2 + 3;
                 BackGroundImageView.setBackgroundResource(R.drawable.elv_magician);
             }
-            if(mClass == 3){ //Class Elv_assassin
+            if (mClass == 3) { //Class Elv_assassin
                 ATT = ATT;
                 DEF = DEF;
                 AGI = AGI + 2 + 2;
@@ -161,73 +162,126 @@ public class ThirdFragment extends Fragment {
         TxtDEF.setText(def);
         TxtAGI.setText(agi);
         TxtMAG.setText(mag);
+
+        view.findViewById(R.id.ButtonSword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (StickOn == 0 && DaggerOn == 0 && SwordOn == 0) {
+                    SwordOn = 1;
+                    ATT = ATT + 5;
+                    DEF = DEF + 5;
+                } else if (StickOn == 0 && DaggerOn == 0 && SwordOn == 1) {
+                    SwordOn = 0;
+                    ATT = ATT - 5;
+                    DEF = DEF - 5;
+                } else {
+                    Toast.makeText(getActivity(), "You already have a weapon", Toast.LENGTH_SHORT).show();
+                }
+                TextView TxtATT = (TextView) getView().findViewById(R.id.att_value);
+                TextView TxtDEF = (TextView) getView().findViewById(R.id.def_value);
+                String att = String.valueOf(ATT);
+                String def = String.valueOf(DEF);
+                TxtATT.setText(att);
+                TxtDEF.setText(def);
+            }
+        });
+
+        view.findViewById(R.id.buttonStick).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SwordOn == 0 && DaggerOn == 0 && StickOn == 0) {
+                    StickOn = 1;
+                    ATT = ATT + 5;
+                    AGI = AGI + 5;
+                } else if (SwordOn == 0 && DaggerOn == 0 && StickOn == 1) {
+                    StickOn = 0;
+                    ATT = ATT - 5;
+                    AGI = AGI - 5;
+                } else {
+                    Toast.makeText(getActivity(), "You already have a weapon", Toast.LENGTH_SHORT).show();
+                }
+                TextView TxtATT = (TextView) getView().findViewById(R.id.att_value);
+                TextView TxtAGI = (TextView) getView().findViewById(R.id.agi_value);
+                String att = String.valueOf(ATT);
+                String agi = String.valueOf(AGI);
+                TxtATT.setText(att);
+                TxtAGI.setText(agi);
+            }
+        });
+
+        view.findViewById(R.id.buttonDagger).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SwordOn == 0 && StickOn == 0 && DaggerOn == 0) {
+                    DaggerOn = 1;
+                    ATT = ATT + 5;
+                    MAG = MAG + 5;
+                } else if (SwordOn == 0 && StickOn == 0 && DaggerOn == 1) {
+                    DaggerOn = 0;
+                    ATT = ATT - 5;
+                    MAG = MAG - 5;
+                } else {
+                    Toast.makeText(getActivity(), "You already have a weapon", Toast.LENGTH_SHORT).show();
+                }
+                TextView TxtATT = (TextView) getView().findViewById(R.id.att_value);
+                TextView TxtMAG = (TextView) getView().findViewById(R.id.mag_value);
+                String att = String.valueOf(ATT);
+                String mag = String.valueOf(MAG);
+                TxtATT.setText(att);
+                TxtMAG.setText(mag);
+            }
+        });
+
+
     }
 
 
+    private static final String BASE_URL = "https://raw.githubusercontent.com/";
 
+    private void MakeAPICall() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
-    /*Class Armor for API Armor*/
-    public class Armor {
-        private String AddedOn;
-        private String ArmorName;
-        private int ATT;
-        private int DEF;
-        private int AGI;
-        private int MAG;
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
 
-        public Armor() {}
+        API_interface interfaceAPI = retrofit.create(API_interface.class);
 
-        /*Constructor*/
-        public Armor(String cAddedOn, String cArmorName, int cATT, int cDEF, int cAGI, int cMAG){
-            AddedOn = cAddedOn;
-            ArmorName = cArmorName;
-            ATT = cATT;
-            DEF = cDEF;
-            AGI = cAGI;
-            MAG = cMAG;
-        }
+        Call<RestArmorResponse> call = interfaceAPI.getArmorResponse();
+        call.enqueue(new Callback<RestArmorResponse>() {
+            @Override
+            public void onResponse(Call<RestArmorResponse> call, Response<RestArmorResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    TextView TxtATT = (TextView) getView().findViewById(R.id.att_value);
+                    TextView TxtDEF = (TextView) getView().findViewById(R.id.def_value);
+                    TextView TxtAGI = (TextView) getView().findViewById(R.id.agi_value);
+                    TextView TxtMAG = (TextView) getView().findViewById(R.id.mag_value);
+                    List<com.example.test1.Armor> ListArmor = response.body().getArmor();
+                    Toast.makeText(getActivity(), "API success", Toast.LENGTH_SHORT).show();
+                    recyclerView.setHasFixedSize(true);
+                    // use a linear layout manager
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        /*Functions get*/
-        public String getAddedOn(){
-            return AddedOn;
-        }
-        public String getArmorName(){
-            return ArmorName;
-        }
-        public int getATT(){
-            return ATT;
-        }
-        public int getDEF(){
-            return DEF;
-        }
-        public int getAGI(){
-            return AGI;
-        }
-        public int getMAG(){
-            return MAG;
-        }
+                    // define an adapter
+                    mAdapter = new MyAdapter(ListArmor, TxtATT, TxtDEF, TxtAGI, TxtMAG);
+                    recyclerView.setAdapter(mAdapter);
+                } else {
+                    showError();
+                }
+            }
 
-        /*Functions set*/
-        public void setAddedOn(String AddedOn) {
-            this.AddedOn = AddedOn;
-        }
-        public void setArmorName(String ArmorName) {
-            this.ArmorName = ArmorName;
-        }
-        public void setATT(int ATT){
-            this.ATT = ATT;
-        }
-        public void setDEF(int DEF){
-            this.DEF = DEF;
-        }
-        public void setAGI(int AGI){
-            this.AGI = AGI;
-        }
-        public void setMAG(int MAG){
-            this.MAG = MAG;
-        }
-
+            @Override
+            public void onFailure(Call<RestArmorResponse> call, Throwable t) {
+                showError();
+            }
+        });
     }
 
+    private void showError() {
+        Toast.makeText(getActivity(), "API error", Toast.LENGTH_SHORT).show();
+    }
 
 }
