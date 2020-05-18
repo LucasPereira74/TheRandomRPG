@@ -231,8 +231,6 @@ public class ThirdFragment extends Fragment {
                 TxtMAG.setText(mag);
             }
         });
-
-
     }
 
 
