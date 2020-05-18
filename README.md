@@ -11,7 +11,7 @@ Cette application a pour objectif de laisser l'utilisateur créer un personnage 
 
 -> Le troisième "QUITT" qui ne sert à rien
 
-![Alt text](https://github.com/LucasPereira74/TheRandomRPG/blob/master/Screenshots/Screenshot_2020-05-18_195850.jpg "First Fragment")
+![FirstFrag](https://github.com/LucasPereira74/TheRandomRPG/blob/master/Screenshots/Screenshot_2020-05-18_195850.jpg "First Fragment")
 
 Commencer par appuyer sur "Create" pour débuter la création d'un personnage Une fois dans la seconde page/fragment (SecondFragment), la création de personnage commence :
 
@@ -20,6 +20,8 @@ Commencer par appuyer sur "Create" pour débuter la création d'un personnage Un
 -> Les visuels des personnages ont été créé avec PowerPoint
 -> Une fois votre choix terminé parmis les 9 combinaisons possibles, vous pouvez appuyer sur le bouton "CREATE" en bas de la page. Cela vous redirigera vers la première page.
 
+![SecondFrag](https://github.com/LucasPereira74/TheRandomRPG/blob/master/Screenshots/Screenshot_2020-05-18_195902.jpg "Second Fragment")
+
 Maintenant que vous êtes revenue à la page princicale (FirstFragment), vous pouvez appuyer sur le bouton load qui vous permettra de choisir un équipement pour le personnage que vous venez de créer (si vous n'avez pas créé de personnage, la page s'instenciera avec un Human Warrior).
 
 Dans la troisième page/fragment (ThirdFragment) vous pourrez ajouter à votre personnage des équipements. Vous y verrez aussi un visuel de ce dernier avec les caractéristiques de celui-ci en fonction de vos choix précédents:
@@ -27,6 +29,8 @@ Dans la troisième page/fragment (ThirdFragment) vous pourrez ajouter à votre p
 -> Le choix de l'armure se fait par un menu déroulant (RecyclerView) dans lequel vous trouverez un total de 15 armures différentes qui sont séparées en 3 styles (Iron/Leather/Magic) et allant du level 1 au level 5. Le choix d'une armure (en cliquant dessus) ajoutera les caractéristiques de l'amure à celle de votre personnage. (Les armures peuvent être cumulées mais pas retirées donc les statistiques se cumule aussi)
 
 -> Le choix de l'arme se fait en appuyant sur un des trois boutons (Sword/Stick/Dagger). Une fois le choix de votre arme faite vous pouvez la retirer en appuyant une nouvelle foix dessus. Vous ne pouvez pas cumuler les armes (un message d'erreur apparaitra si vous le faite).
+
+![ThirdFrag](https://github.com/LucasPereira74/TheRandomRPG/blob/master/Screenshots/Screenshot_2020-05-18_195916.jpg "Second Fragment")
 
 Et voilà, vous avez créé votre personnage de "TheRandomRPG".
 
