@@ -11,7 +11,7 @@ Cette application a pour objectif de laisser l'utilisateur créer un personnage 
 
 -> Le troisième "QUITT" qui ne sert à rien
 
-<p align="center"><img src="/Screenshots/Screenshot_2020-05-18_195850.jpg width="100" height="100"</img></p>
+![Alt text](http://full/path/to/img.jpg "First Fragment")
 
 Commencer par appuyer sur "Create" pour débuter la création d'un personnage Une fois dans la seconde page/fragment (SecondFragment), la création de personnage commence :
 
